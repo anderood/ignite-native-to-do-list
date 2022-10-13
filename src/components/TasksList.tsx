@@ -16,9 +16,10 @@ interface TasksListProps {
   tasks: Task[];
   toggleTaskDone: (id: number) => void;
   removeTask: (id: number) => void;
+  editTask: (taskId: number, taskNewTite: string ) => void;
 }
 
-export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps) {
+export function TasksList({ tasks, toggleTaskDone, removeTask, editTask }: TasksListProps) {
   return (
     <FlatList
       data={tasks}
@@ -59,6 +60,15 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
               </TouchableOpacity>
             </View>
 
+            <TouchableOpacity
+              testID={`trash-${index}`}
+              style={{ flex: 1, alignItems: 'flex-end'}}
+              //TODO - use onPress (remove task) prop
+              // onPress={() => removeTask(item.id)}
+            >
+              <Image source={trashIcon} />
+            </TouchableOpacity>
+            
             <TouchableOpacity
               testID={`trash-${index}`}
               style={{ paddingHorizontal: 24 }}
